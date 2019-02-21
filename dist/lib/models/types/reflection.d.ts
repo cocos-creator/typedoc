@@ -7,5 +7,5 @@ export declare class ReflectionType extends Type {
     clone(): Type;
     equals(type: ReflectionType): boolean;
     toObject(): any;
-    toString(): "function" | "object";
+    toString(): "object" | "function";
 }

@@ -7,6 +7,14 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "test",
+            "program": "${workspaceFolder}/bin/typedoc",
+            "cwd": "E:\\GitStone\\engine",
+            "args":["./index.ts"]
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Debug Tests",
             "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
             "cwd": "${workspaceRoot}",

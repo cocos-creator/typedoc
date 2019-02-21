@@ -9,14 +9,74 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ts = require("typescript");
 const index_1 = require("../../models/index");
 const components_1 = require("../components");
+const factories_1 = require("../factories");
 let ExportConverter = class ExportConverter extends components_1.ConverterNodeComponent {
     constructor() {
         super(...arguments);
         this.supports = [
-            ts.SyntaxKind.ExportAssignment
+            ts.SyntaxKind.ExportAssignment,
+            ts.SyntaxKind.ExportDeclaration
         ];
     }
+    _convertExportAllDeclaration(context, moduleSpecifier) {
+        const symbol = context.checker.getSymbolAtLocation(moduleSpecifier);
+        if (!symbol) {
+            return context.scope;
+        }
+        const valueDeclaration = symbol.valueDeclaration;
+        if (!valueDeclaration) {
+            return context.scope;
+        }
+        if (!ts.isSourceFile(valueDeclaration)) {
+            return context.scope;
+        }
+        valueDeclaration.statements.forEach((statement) => {
+            this.owner.convertNode(context, statement);
+        });
+        return context.scope;
+    }
+    _convertExportDeclaration(context, node) {
+        if (node.moduleSpecifier) {
+            return this._convertExportAllDeclaration(context, node.moduleSpecifier);
+        }
+        if (!node.exportClause) {
+            return context.scope;
+        }
+        node.exportClause.elements.forEach((element) => {
+            const exportedSymbol = context.checker.getSymbolAtLocation(element.name);
+            if (exportedSymbol) {
+                const originalSymbol = context.checker.getAliasedSymbol(exportedSymbol);
+                const declarations = originalSymbol.getDeclarations();
+                if (declarations) {
+                    declarations.forEach((declaration) => {
+                        if (ts.isSourceFile(declaration)) {
+                            const reflection = factories_1.createDeclaration(context, element.name, index_1.ReflectionKind.Module, exportedSymbol.name);
+                            if (reflection) {
+                                reflection.setFlag(index_1.ReflectionFlag.Exported);
+                                context.withScope(reflection, () => {
+                                    declaration.statements.forEach((statement) => {
+                                        this.owner.convertNode(context, statement);
+                                    });
+                                });
+                            }
+                        }
+                        else {
+                            const reflection = this.owner.convertNode(context, declaration);
+                            if (reflection) {
+                                reflection.setFlag(index_1.ReflectionFlag.Exported);
+                                reflection.name = exportedSymbol.name;
+                            }
+                        }
+                    });
+                }
+            }
+        });
+        return context.scope;
+    }
     convert(context, node) {
+        if (ts.isExportDeclaration(node)) {
+            return this._convertExportDeclaration(context, node);
+        }
         let symbol;
         if (node.symbol && (node.symbol.flags & ts.SymbolFlags.Alias) === ts.SymbolFlags.Alias) {
             symbol = context.checker.getAliasedSymbol(node.symbol);

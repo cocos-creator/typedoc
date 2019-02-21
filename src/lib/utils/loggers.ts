@@ -109,6 +109,7 @@ export class Logger {
         if (level === LogLevel.Error) {
             this.errorCount += 1;
         }
+        console.log(`${message}`);
     }
 
     /**

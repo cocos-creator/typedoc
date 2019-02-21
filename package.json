@@ -1,7 +1,7 @@
 {
   "name": "typedoc",
-  "description": "Create api documentations for typescript projects.",
-  "version": "0.14.2",
+  "version": "1.0.3",
+  "description": "",
   "homepage": "http://typedoc.org",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -12,22 +12,13 @@
     "name": "Sebastian Lenz",
     "url": "http://www.sebastian-lenz.de/"
   },
-  "license": "Apache-2.0",
+  "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git://github.com/TypeStrong/TypeDoc.git"
+    "url": "https://github.com/cocos-creator/typedoc"
   },
   "bugs": {
-    "url": "https://github.com/TypeStrong/TypeDoc/issues"
-  },
-  "licenses": [
-    {
-      "type": "Apache-2.0",
-      "url": "https://github.com/TypeStrong/TypeDoc/blob/master/LICENSE"
-    }
-  ],
-  "engines": {
-    "node": ">= 6.0.0"
+    "url": "https://github.com/cocos-creator/typedoc"
   },
   "dependencies": {
     "@types/fs-extra": "^5.0.3",
@@ -76,7 +67,6 @@
     "test": "grunt test",
     "build": "grunt build_and_test",
     "lint": "tslint --project .",
-    "prepublishOnly": "grunt build_and_test",
     "prepare": "grunt default",
     "grunt": "grunt",
     "clean": "rm -rf node_modules package-lock.json lib coverage .tscache"

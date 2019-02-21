@@ -1,3 +1,0 @@
-#!/bin/sh
-cd ${0%/*}
-node ../../bin/typedoc --includeDeclarations --externalPattern **/lib/** --mode file --name "TypeDoc Documentation" --out doc/ ../../src/

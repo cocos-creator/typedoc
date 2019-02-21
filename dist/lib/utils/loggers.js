@@ -42,7 +42,6 @@ class Logger {
         if (level === LogLevel.Error) {
             this.errorCount += 1;
         }
-        console.log(`${message}: ${level}`);
     }
     diagnostics(diagnostics) {
         diagnostics.forEach((diagnostic) => {
