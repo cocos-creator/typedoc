@@ -17,4 +17,5 @@ yarn-error.log
 /node_modules/
 /typescript/
 /coverage/
-/dist/test
+/dist/test/
+Temp/node_modules

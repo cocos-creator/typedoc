@@ -1,0 +1,2 @@
+- This is a private package tool which belongs to Creator engine.
+- This is the link for origin [Tool](https://www.npmjs.com/package/typedoc).
