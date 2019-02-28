@@ -1,0 +1,1 @@
+{"version":3,"file":"b.js","sourceRoot":"","sources":["../../../src/test/module/b.ts"],"names":[],"mappings":";;AAAA,SAAgB,QAAQ,CAAC,CAAS,EAAE,CAAS;IACzC,OAAO,CAAC,GAAG,CAAC,CAAC;AACjB,CAAC;AAFD,4BAEC","sourcesContent":["export function multiply(a: number, b: number) {\n    return a * b;\n}\n"]}

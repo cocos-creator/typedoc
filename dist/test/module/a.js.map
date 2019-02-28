@@ -1,0 +1,1 @@
+{"version":3,"file":"a.js","sourceRoot":"","sources":["../../../src/test/module/a.ts"],"names":[],"mappings":";;AAAA,2BAA+B;AAE/B,SAAgB,GAAG,CAAC,CAAS,EAAE,CAAS;IACpC,OAAO,CAAC,GAAG,YAAQ,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC;AAC9B,CAAC;AAFD,kBAEC","sourcesContent":["import { multiply } from './b';\n\nexport function add(a: number, b: number) {\n    return a + multiply(b, 1);\n}\n"]}
