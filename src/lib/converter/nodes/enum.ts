@@ -5,7 +5,7 @@ import { createDeclaration } from '../factories/index';
 import { Context } from '../context';
 import { Component, ConverterNodeComponent } from '../components';
 import { convertDefaultValue } from '../index';
-
+import { parse } from 'path';
 @Component({name: 'node:enum'})
 export class EnumConverter extends ConverterNodeComponent<ts.EnumDeclaration> {
     /**
@@ -32,7 +32,9 @@ export class EnumConverter extends ConverterNodeComponent<ts.EnumDeclaration> {
                 }
             }
         });
-
+        // 为了修复 enum 通路径下重名问题方案很 hack，并且需要后续数据纠正
+        if (enumeration)
+            enumeration.name += `_${enumeration.parent && parse(enumeration.parent.name).name}`;
         return enumeration;
     }
 

@@ -1,7 +1,7 @@
 {
   "name": "typedoc",
   "description": "Create api documentation for TypeScript projects.",
-  "version": "0.15.0-0",
+  "version": "0.15.1-0",
   "homepage": "https://typedoc.org",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -13,13 +13,6 @@
     "url": "http://www.sebastian-lenz.de/"
   },
   "license": "Apache-2.0",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/TypeStrong/TypeDoc.git"
-  },
-  "bugs": {
-    "url": "https://github.com/TypeStrong/TypeDoc/issues"
-  },
   "licenses": [
     {
       "type": "Apache-2.0",
@@ -44,10 +37,8 @@
     "minimatch": "^3.0.0",
     "progress": "^2.0.3",
     "shelljs": "^0.8.3",
-    "typedoc-default-themes": "^0.6.0-0",
-    "typescript": "3.3.x"
-  },
-  "devDependencies": {
+    "typedoc-default-themes": "^0.5.0-0",
+    "typescript": "3.3.x",
     "@types/mocha": "^5.2.6",
     "@types/mockery": "^1.4.29",
     "mocha": "^6.0.2",
@@ -56,13 +47,6 @@
     "ts-node": "^8.0.3",
     "tslint": "^5.14.0"
   },
-  "files": [
-    "bin",
-    "dist",
-    "!dist/test",
-    "tasks",
-    "LICENSE"
-  ],
   "scripts": {
     "pretest": "node scripts/copy_test_files.js",
     "test": "nyc --reporter=html --reporter=text-summary mocha --timeout=10000 dist/test/*.test.js",
