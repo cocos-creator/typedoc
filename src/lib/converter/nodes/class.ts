@@ -69,9 +69,16 @@ export class ClassConverter extends ConverterNodeComponent<ts.ClassDeclaration> 
                     const typesToInheritFrom: ts.Type[] = type.isIntersection() ? type.types : [ type ];
 
                     typesToInheritFrom.forEach((typeToInheritFrom: ts.Type) => {
-                        typeToInheritFrom.symbol && typeToInheritFrom.symbol.declarations.forEach((declaration) => {
-                            context.inherit(declaration, baseType.typeArguments);
-                        });
+                        if (typeToInheritFrom.symbol) {
+                            // 这个部分因为 3d 引擎 EventTarget Class 的 hack 操作需要特殊处理
+                            if (!typeToInheritFrom.symbol.declarations)
+                                console.log(`class.js-typesToInheritFrom: ${extendsClause.getSourceFile().fileName}`);
+                            else {
+                                typeToInheritFrom.symbol.declarations.forEach((declaration) => {
+                                    context.inherit(declaration, baseType.typeArguments);
+                                });
+                            }
+                        }
                     });
                 }
             }
