@@ -45,7 +45,7 @@
     "minimatch": "^3.0.0",
     "progress": "^2.0.0",
     "shelljs": "^0.8.2",
-    "typedoc-default-themes": "github:cocos-creator/typedoc-default-themes#master",
+    "typedoc-default-themes": "^0.6.0",
     "typescript": "3.2.x"
   },
   "devDependencies": {
